@@ -3,8 +3,8 @@
 // @namespace   Violentmonkey Scripts
 // @match       http://10.211.110.123/tksds/TKK807/WKK80701DSP.do*
 // @grant       none
-// @version     1.0.1
-// @downloadURL https://github.com/CIopt-Bot/easy-scripts/raw/easytksds.user.js
+// @version     1.0.2
+// @downloadURL https://github.com/CIopt-Bot/easy-scripts/raw/main/easytksds.user.js
 // @author      -
 // @description Make TKSDS System More User Friendly
 // ==/UserScript==
