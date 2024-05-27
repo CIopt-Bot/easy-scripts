@@ -5,6 +5,7 @@
 // @grant       none
 // @version     1.1.0
 // @downloadURL https://github.com/CIopt-Bot/easy-scripts/raw/main/easytksds.user.js
+// @updateURL   https://github.com/CIopt-Bot/easy-scripts/raw/main/easytksds.user.js
 // @author      -
 // @description Make TKSDS System More User Friendly
 // ==/UserScript==
