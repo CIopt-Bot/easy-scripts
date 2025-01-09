@@ -4,7 +4,7 @@
 // @match       http://10.211.110.123/tksds/*
 // @match       http://jkorscp.co.kr/tkscp/*
 // @grant       none
-// @version     1.4.0
+// @version     1.4.1
 // @downloadURL https://github.com/CIopt-Bot/easy-scripts/raw/main/easytksds.user.js
 // @updateURL   https://github.com/CIopt-Bot/easy-scripts/raw/main/easytksds.user.js
 // @author      CIopt-Bot
@@ -68,6 +68,7 @@
         const dataInput = document.querySelector('input[name="strData01"]');
         const otherTextarea = document.querySelector('textarea[name="strOther"]');
         const otherInput = document.querySelector('input[name="strOther04"]');
+        var targetTd = document.querySelector('body > form > div:nth-child(3) > table > tbody > tr:nth-child(12) > td:nth-child(4)');
 
         // Add event listener for strCdType select element
         if (selectElement) {
@@ -83,9 +84,38 @@
                 handleElectronicInputChange(selectElement, electronicInput, dataInput, otherTextarea, otherInput);
             });
         }
+
+        if (otherTextarea) {
+            // 创建用于显示字符计数的元素
+            var charCountDisplay = document.createElement('div');
+            charCountDisplay.style.marginTop = '5px';
+            charCountDisplay.style.fontWeight = 'bold';
+            charCountDisplay.style.fontSize = 'large';
+            charCountDisplay.style.color = '#ff6666';
+            charCountDisplay.textContent = '0/50';
+            charCountDisplay.style.textAlign = 'end';
+            charCountDisplay.style.position = 'absolute';
+            charCountDisplay.style.top = '512px';
+            charCountDisplay.style.left = '1195px';
+            charCountDisplay.style.userSelect = 'none';
+            targetTd.appendChild(charCountDisplay);
+
+            otherTextarea.addEventListener('input', function() {
+                var inputLength = otherTextarea.value.length;
+                if (inputLength < 50 || inputLength > 0 ){
+                  charCountDisplay.style.color = '#ff6666';
+                  charCountDisplay.style.fontWeight = 'none';
+                  charCountDisplay.style.fontSize = '10px';
+                  charCountDisplay.style.top = '515px';
+                  charCountDisplay.style.left = '1210px';
+                } else {
+                  charCountDisplay.style.color = '#c0c0c0';
+                }
+                charCountDisplay.textContent = inputLength + '/50';
+            });
+
+        }
     }
-
-
 
     // Handle change event for strCdType select element
     function handleStrCdTypeChange(selectElement, electronicInput, dataInput, otherTextarea, otherInput) {
@@ -105,7 +135,11 @@
 
         if (selectElement.value === 'lb06InBusinessTrip' || selectElement.value === 'lb26OverTime') {
             const valueToCopy = electronicInput.value;
-            [dataInput, otherTextarea, otherInput].forEach(input => input.value = valueToCopy);
+            [dataInput, otherTextarea, otherInput].forEach(input => {
+                input.value = valueToCopy;
+                const event = new Event('input', { bubbles: true });
+                input.dispatchEvent(event);
+            });
             document.getElementById('strDate01').value = new Date().toISOString().slice(0, 10).replace(/-/g, "");
         }
         if (selectElement.value === 'lb26OverTime') {
@@ -118,7 +152,11 @@
     function handleElectronicInputChange(selectElement, electronicInput, dataInput, otherTextarea, otherInput) {
         if (selectElement.value === 'lb06InBusinessTrip' || selectElement.value === 'lb26OverTime') {
             const valueToCopy = electronicInput.value;
-            [dataInput, otherTextarea, otherInput].forEach(input => input.value = valueToCopy);
+            [dataInput, otherTextarea, otherInput].forEach(input => {
+                input.value = valueToCopy;
+                const event = new Event('input', { bubbles: true });
+                input.dispatchEvent(event);
+            });
         }
     }
 
