@@ -4,7 +4,7 @@
 // @match       http://10.211.110.123/tksds/*
 // @match       http://jkorscp.co.kr/tkscp/*
 // @grant       none
-// @version     1.4.1
+// @version     1.4.2
 // @downloadURL https://github.com/CIopt-Bot/easy-scripts/raw/main/easytksds.user.js
 // @updateURL   https://github.com/CIopt-Bot/easy-scripts/raw/main/easytksds.user.js
 // @author      CIopt-Bot
@@ -102,7 +102,7 @@
 
             otherTextarea.addEventListener('input', function() {
                 var inputLength = otherTextarea.value.length;
-                if (inputLength < 50 || inputLength > 0 ){
+                if (inputLength < 50 ){
                   charCountDisplay.style.color = '#ff6666';
                   charCountDisplay.style.fontWeight = 'none';
                   charCountDisplay.style.fontSize = '10px';
